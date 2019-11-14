@@ -23,8 +23,11 @@ function MainView(props) {
 
   return (
     <div className={MainViewClassName}>
-      <Route component={loadable(() => import('../components/Tabs'))} />
-      <Route path={['/', '/robot_chat', '/group_chat/:to_group_id', '/private_chat/:user_id']} exact component={loadable(() => import('../containers/HomePageList'))} />
+      <Route component={loadable(() => import('../containers/Tabs'))} />
+      <Route
+        path={['/', '/robot_chat', '/group_chat/:to_group_id', '/private_chat/:user_id']}
+        exact
+        component={loadable(() => import('../containers/HomePageList'))} />
       <Route path="/setting" exact component={loadable(() => import('../containers/SettingPage'))} />
     </div>
   );
@@ -45,7 +48,13 @@ function RightView(props) {
       <Route path="/robot_chat" component={loadable(() => import('../containers/RobotPage'))} />
       <Route path="/group_chat/:to_group_id" component={loadable(() => import('../containers/GroupChatPage'))} />
       <Route path="/private_chat/:user_id" component={loadable(() => import('../containers/PrivateChatPage'))} />
-      {['/', '/setting'].map((path, index) => <Route path={path} exact component={loadable(() => import('../containers/WelcomePage'))} key={index} />)}
+      {['/', '/setting'].map((path, index) => (
+        <Route
+          path={path}
+          exact
+          component={loadable(() => import('../containers/WelcomePage'))}
+          key={index} />
+      ))}
     </div>
   );
 }
